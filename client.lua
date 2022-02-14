@@ -30,7 +30,7 @@ Citizen.CreateThread(function()
 				while customturbo[plate] ~= nil and customturbo[plate] ~= 'Default' do
 					turbo = Config.turbos[customturbo[plate]]
 					customturbo[plate] = veh.turbo
-					while IsControlPressed(0, 32) do
+					while IsControlPressed(0, 71) do
 						if turbo.Torque > boost then
 							boost = boost + 0.01
 						end
@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
 							soundofnitro = PlaySoundFromEntity(GetSoundId(), "Flare", vehicle , "DLC_HEISTS_BIOLAB_FINALE_SOUNDS", 0, 0)
 							sound = true
 						end
-						if sound and not IsControlPressed(1, 32) or IsControlPressed(1, 32) and rpm > 0.8 and oldgear ~= gear then
+						if sound and not IsControlPressed(1, 71) or IsControlPressed(1, 71) and rpm > 0.8 and oldgear ~= gear then
 							StopSound(soundofnitro)
 							ReleaseSoundId(soundofnitro)
 							sound = false
@@ -67,7 +67,7 @@ Citizen.CreateThread(function()
 						end
 						Wait(1)
 					end
-					if sound and not IsControlPressed(1, 32) or IsControlPressed(1, 32) and rpm > 0.8 and oldgear ~= gear then
+					if sound and not IsControlPressed(1, 71) or IsControlPressed(1, 71) and rpm > 0.8 and oldgear ~= gear then
 						StopSound(soundofnitro)
 						ReleaseSoundId(soundofnitro)
 						sound = false
