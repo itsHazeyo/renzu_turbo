@@ -17,6 +17,8 @@ Citizen.CreateThread(function()
 				local turbo = Config.turbos[customturbo[plate]]
 				local default = {fDriveInertia = GetVehicleHandlingFloat(vehicle , "CHandlingData","fDriveInertia"), fInitialDriveForce = GetVehicleHandlingFloat(vehicle , "CHandlingData","fInitialDriveForce")}
 				ToggleVehicleMod(vehicle,18,true)
+				local basepower = GetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDriveForce")
+				local boostlag = GetVehicleHandlingFloat(vehicle, "CHandlingData", "fDriveInertia")
 				local sound = false
 				local soundofnitro = nil
 				local customized = false
@@ -44,6 +46,8 @@ Citizen.CreateThread(function()
 								power = power + ent.nitropower
 							end
 							SetVehicleCheatPowerIncrease(vehicle,power * GetVehicleTurboPressure(vehicle))
+							SetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDriveForce", basepower + turbo.Power)
+							SetVehicleHandlingFloat(vehicle, "CHandlingData", "fDriveInertia", boostlag + turbo.Torque)
 						end
 						if not sound then
 							soundofnitro = PlaySoundFromEntity(GetSoundId(), "Flare", vehicle , "DLC_HEISTS_BIOLAB_FINALE_SOUNDS", 0, 0)
