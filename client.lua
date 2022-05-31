@@ -27,7 +27,7 @@ Citizen.CreateThread(function()
 				local cd = 0
 				local rpm = GetVehicleCurrentRpm(vehicle)
 				local gear = GetVehicleCurrentGear(vehicle)
-				local maxvol = 0.4
+				local maxvol = 0.60
 				local ent = Entity(vehicle).state
 				while customturbo[plate] ~= nil and customturbo[plate] ~= 'Default' do
 					turbo = Config.turbos[customturbo[plate]]
@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
 						gear = GetVehicleCurrentGear(vehicle)
 						SetVehicleTurboPressure(vehicle , boost + turbo.Power * rpm)
 						if GetVehicleTurboPressure(vehicle) >= turbo.Power then
-							local power = turbo.Power
+							local power = turbo.Power 
 							if ent.nitroenable then
 								power = power + ent.nitropower
 							end
@@ -50,10 +50,10 @@ Citizen.CreateThread(function()
 							SetVehicleHandlingFloat(vehicle, "CHandlingData", "fDriveInertia", boostlag + turbo.Torque)
 						end
 						if not sound then
-							soundofnitro = PlaySoundFromEntity(GetSoundId(), "Flare", vehicle , "DLC_HEISTS_BIOLAB_FINALE_SOUNDS", 0, 0)
+							--soundofnitro = PlaySoundFromEntity(GetSoundId(), "Flare", vehicle , "DLC_HEISTS_BIOLAB_FINALE_SOUNDS", 0, 0)
 							sound = true
 						end
-						if sound and not IsControlPressed(1, 71) or IsControlPressed(1, 71) and rpm > 0.8 and oldgear ~= gear then
+						if sound and IsControlJustReleased(1, 71) or IsControlJustReleased(1, 71) and rpm > 0.8 and oldgear ~= gear then
 							StopSound(soundofnitro)
 							ReleaseSoundId(soundofnitro)
 							sound = false
@@ -66,12 +66,14 @@ Citizen.CreateThread(function()
 								TriggerServerEvent('renzu_turbo:soundsync',table)
 								cd = 0
 							end
+							SetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDriveForce", basepower)
+							SetVehicleHandlingFloat(vehicle, "CHandlingData", "fDriveInertia", boostlag)
 							boost = 0
 							oldgear = gear
 						end
 						Wait(1)
 					end
-					if sound and not IsControlPressed(1, 71) or IsControlPressed(1, 71) and rpm > 0.8 and oldgear ~= gear then
+					if sound and IsControlJustReleased(1, 71) or IsControlJustReleased(1, 71) and rpm > 0.8 and oldgear ~= gear then
 						StopSound(soundofnitro)
 						ReleaseSoundId(soundofnitro)
 						sound = false
@@ -84,6 +86,8 @@ Citizen.CreateThread(function()
 							TriggerServerEvent('renzu_turbo:soundsync',table)
 							cd = 0
 						end
+						SetVehicleHandlingFloat(vehicle, "CHandlingData", "fInitialDriveForce", basepower)
+						SetVehicleHandlingFloat(vehicle, "CHandlingData", "fDriveInertia", boostlag)
 						boost = 0
 						oldgear = gear
 					end
