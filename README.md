@@ -2,6 +2,9 @@
 Change Vehicle Turbo system
 
 # Feat
+- While I was only trying to make it reduce the Horsepower back to "Pre-boost" levels once you let go if the gas... I some how enabled "BoostLag", meaning now you will     have to get the rpm above a certain point in-order to get the boost out of your Renzu-turbo. just like big turbo cars! lol ~itshazeyo
+- Made it Compatible with my Handling mod
+- https://www.youtube.com/watch?v=v-zaPlX4VUo&t=2s
 - Custom BOV Sounds for each Turbo variants
 - Custom Power for ea Turbo Variants
 - Power Multiplication Sync with renzu_nitro
