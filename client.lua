@@ -40,7 +40,7 @@ Citizen.CreateThread(function()
 						rpm = GetVehicleCurrentRpm(vehicle)
 						gear = GetVehicleCurrentGear(vehicle)
 						SetVehicleTurboPressure(vehicle , boost + turbo.Power * rpm)
-						if GetVehicleTurboPressure(vehicle) >= turbo.Power then
+						if GetVehicleCurrentRpm(vehicle) >= turbo.Wastegate then
 							local power = turbo.Power 
 							if ent.nitroenable then
 								power = power + ent.nitropower
@@ -53,7 +53,7 @@ Citizen.CreateThread(function()
 							--soundofnitro = PlaySoundFromEntity(GetSoundId(), "Flare", vehicle , "DLC_HEISTS_BIOLAB_FINALE_SOUNDS", 0, 0)
 							sound = true
 						end
-						if sound and IsControlJustReleased(1, 71) or IsControlJustReleased(1, 71) and rpm > 0.8 and oldgear ~= gear then
+						if sound and IsControlJustReleased(1, 71) or IsControlJustReleased(1, 71) and rpm > turbo.Wastegate and oldgear ~= gear then
 							StopSound(soundofnitro)
 							ReleaseSoundId(soundofnitro)
 							sound = false
@@ -73,7 +73,7 @@ Citizen.CreateThread(function()
 						end
 						Wait(1)
 					end
-					if sound and IsControlJustReleased(1, 71) or IsControlJustReleased(1, 71) and rpm > 0.8 and oldgear ~= gear then
+					if sound and IsControlJustReleased(1, 71) or IsControlJustReleased(1, 71) and rpm > turbo.Wastegate and oldgear ~= gear then
 						StopSound(soundofnitro)
 						ReleaseSoundId(soundofnitro)
 						sound = false
