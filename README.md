@@ -7,7 +7,7 @@ Add Horsepowah to your car
 - Disabled the sounds due to my server having custom car sounds
 - Designed for the Migdnight Club Unlimited Handling mod ~itsHazeyo
 - https://www.youtube.com/watch?v=v-zaPlX4VUo&t=2s ~itsHazeyo
-
+- WILL REQUIRE THE INVERESEPOWER.ASI PLUG-IN TO WORK IDK WHY
 - Custom Power for each induction system
 - Power Multiplication Sync with renzu_nitro
 - Item Supported
