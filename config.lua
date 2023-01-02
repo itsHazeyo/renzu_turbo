@@ -6,7 +6,9 @@ Config.weight = 1.5
 Config.jobonly = false
 Config.turbojob = 'mechanic'
 Config.turbos = {
-	Street = {Power = 0.2, Torque = 0.05, value = 25000},
-	Sports = {Power = 0.4, Torque = 0.1, value = 55000},
-	Racing = {Power = 0.8, Torque = 0.2, value = 125000},
+	Turbo50hp  = {Power = 0.055, Torque = 0.2, Wastegate = 0.4, value = 25000},
+	Super50hp  = {Power = 0.050, Torque = 0.2, Wastegate = 0.20, value = 25000},
+
+	Turbo100hp  = {Power = 0.125, Torque = 0.2, Wastegate = 0.4, value = 25000},
+	Super100hp  = {Power = 0.100, Torque = 0.2, Wastegate = 0.20, value = 25000},
 }
