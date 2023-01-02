@@ -112,21 +112,21 @@ Citizen.CreateThread(function()
     local turboname = string.lower(v)
     local label = string.upper(v)
     foundRow = SqlFunc(Config.Mysql,'fetchAll',"SELECT * FROM items WHERE name = @name", {
-      ['@name'] = "turbo"..turboname..""
+      ['@name'] = "hkr"..turboname..""
     })
     if foundRow[1] == nil then
       local weight = 'limit'
       if Config.weight_type then
         SqlFunc(Config.Mysql,'execute',"INSERT INTO items (name, label, weight) VALUES (@name, @label, @weight)", {
-          ['@name'] = "turbo"..turboname.."",
-          ['@label'] = ""..firstToUpper(turboname).." Turbo",
+          ['@name'] = "hkr"..turboname.."",
+          ['@label'] = ""..firstToUpper(turboname).." Kit",
           ['@weight'] = Config.weight
         })
         print("Inserting "..turboname.."")
       else
         SqlFunc(Config.Mysql,'execute',"INSERT INTO items (name, label) VALUES (@name, @label)", {
-          ['@name'] = "turbo"..turboname.."",
-          ['@label'] = ""..firstToUpper(turboname).." Turbo",
+          ['@name'] = "hkr"..turboname.."",
+          ['@label'] = ""..firstToUpper(turboname).." Kit",
         })
         print("Inserting "..turboname.."")
       end
@@ -136,10 +136,10 @@ Citizen.CreateThread(function()
   for v, k in pairs(Config.turbos) do
     local turboname = string.lower(v)
     print("register item", v)
-    RegisterUsableItem("turbo"..turboname.."", function(source)
+    RegisterUsableItem("hkr"..turboname.."", function(source)
       local xPlayer = GetPlayerFromId(source)
       if Config.jobonly and xPlayer.job.name ~= tostring(Config.turbojob) then print("not mech") return end
-      xPlayer.removeInventoryItem("turbo"..turboname.."", 1)
+      xPlayer.removeInventoryItem("hkr"..turboname.."", 1)
       local veh = GetVehiclePedIsIn(GetPlayerPed(source),false)
       local turbo = turboname
       if turbo ~= nil and veh ~= 0 then
